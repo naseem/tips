@@ -14,35 +14,53 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
+    var tipPercentages: [Int]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
+        updateTipControl()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        updateTipControl()
+        updateTipAmount()
+    }
+
+
     @IBAction func onEditingChanged(sender: AnyObject) {
-        var tipPercentages = [0.18, 0.2, 0.22]
-        let billAmount = Double(billField.text!)!
-        print("User edited bill \(billAmount)")
-        let tip = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
-        let total = billAmount + tip
-        tipLabel.text = "$\(tip)"
-        totalLabel.text = "$\(total)"
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        updateTipAmount()
+    }
+    
+    func updateTipControl() {
+        tipPercentages = DataHelper.loadTipPercentages()
+        for index in 0...2 {
+            tipControl.setTitle("\(tipPercentages[index])%", forSegmentAtIndex: index)
+        }
+    }
+
+    func updateTipAmount() {
+        if let billAmount = Double(billField.text!) {
+            let tipPercentage = Double(tipPercentages[tipControl.selectedSegmentIndex])/100
+            let tip = billAmount * tipPercentage
+            let total = billAmount + tip
+            tipLabel.text = "$\(tip)"
+            totalLabel.text = "$\(total)"
+            tipLabel.text = String(format: "$%.2f", tip)
+            totalLabel.text = String(format: "$%.2f", total)
+        }
     }
 
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
 }
 

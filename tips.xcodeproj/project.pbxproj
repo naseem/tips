@@ -14,6 +14,8 @@
 		1F67CBBE1C44C4E600E3FFAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F67CBBC1C44C4E600E3FFAE /* LaunchScreen.storyboard */; };
 		1F67CBC91C44C4E600E3FFAE /* tipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F67CBC81C44C4E600E3FFAE /* tipsTests.swift */; };
 		1F67CBD41C44C4E600E3FFAE /* tipsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F67CBD31C44C4E600E3FFAE /* tipsUITests.swift */; };
+		1F67CBE21C44EAE000E3FFAE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F67CBE11C44EAE000E3FFAE /* SettingsViewController.swift */; };
+		1F67CBE51C45942600E3FFAE /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F67CBE41C45942600E3FFAE /* DataHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		1F67CBCF1C44C4E600E3FFAE /* tipsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tipsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F67CBD31C44C4E600E3FFAE /* tipsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tipsUITests.swift; sourceTree = "<group>"; };
 		1F67CBD51C44C4E600E3FFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F67CBE11C44EAE000E3FFAE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1F67CBE41C45942600E3FFAE /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +101,13 @@
 		1F67CBB21C44C4E500E3FFAE /* tips */ = {
 			isa = PBXGroup;
 			children = (
+				1F67CBE31C44EAE500E3FFAE /* ViewControllers */,
 				1F67CBB31C44C4E500E3FFAE /* AppDelegate.swift */,
-				1F67CBB51C44C4E500E3FFAE /* ViewController.swift */,
 				1F67CBB71C44C4E600E3FFAE /* Main.storyboard */,
 				1F67CBBA1C44C4E600E3FFAE /* Assets.xcassets */,
 				1F67CBBC1C44C4E600E3FFAE /* LaunchScreen.storyboard */,
 				1F67CBBF1C44C4E600E3FFAE /* Info.plist */,
+				1F67CBE41C45942600E3FFAE /* DataHelper.swift */,
 			);
 			path = tips;
 			sourceTree = "<group>";
@@ -123,6 +128,15 @@
 				1F67CBD51C44C4E600E3FFAE /* Info.plist */,
 			);
 			path = tipsUITests;
+			sourceTree = "<group>";
+		};
+		1F67CBE31C44EAE500E3FFAE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1F67CBE11C44EAE000E3FFAE /* SettingsViewController.swift */,
+				1F67CBB51C44C4E500E3FFAE /* ViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F67CBB61C44C4E500E3FFAE /* ViewController.swift in Sources */,
+				1F67CBE51C45942600E3FFAE /* DataHelper.swift in Sources */,
 				1F67CBB41C44C4E500E3FFAE /* AppDelegate.swift in Sources */,
+				1F67CBE21C44EAE000E3FFAE /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
