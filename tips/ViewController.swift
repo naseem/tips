@@ -21,6 +21,10 @@ class ViewController: UIViewController {
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
         updateTipControl()
+        if let billAmount = DataHelper.getBillAmount() {
+            billField.text = String(format: "%.2f", billAmount)
+            updateTipAmount()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -29,9 +33,9 @@ class ViewController: UIViewController {
         updateTipAmount()
     }
 
-
     @IBAction func onEditingChanged(sender: AnyObject) {
         updateTipAmount()
+        DataHelper.saveDefaultTip(tipControl.selectedSegmentIndex)
     }
     
     func updateTipControl() {
@@ -39,6 +43,7 @@ class ViewController: UIViewController {
         for index in 0...2 {
             tipControl.setTitle("\(tipPercentages[index])%", forSegmentAtIndex: index)
         }
+        tipControl.selectedSegmentIndex = DataHelper.loadDefaultTip()
     }
 
     func updateTipAmount() {
@@ -50,6 +55,7 @@ class ViewController: UIViewController {
             totalLabel.text = "$\(total)"
             tipLabel.text = String(format: "$%.2f", tip)
             totalLabel.text = String(format: "$%.2f", total)
+            DataHelper.cacheBillAmount(billAmount, seconds: 600)
         }
     }
 

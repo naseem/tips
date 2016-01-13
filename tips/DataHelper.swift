@@ -32,4 +32,36 @@ class DataHelper {
         return tipPercentages
     }
 
+    static func saveDefaultTip(index: Int) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(index, forKey: "defaultTipPercentageIndex")
+        defaults.synchronize()
+    }
+
+    static func loadDefaultTip() -> Int {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let tipIndex = defaults.objectForKey("defaultTipPercentageIndex")
+        return (tipIndex == nil) ? 1 : tipIndex!.integerValue
+    }
+    
+    static func cacheBillAmount(billAmount: Double, seconds: Int) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let expirationTime = NSDate().timeIntervalSince1970 + NSTimeInterval(seconds)
+        defaults.setObject(["amount": billAmount, "exp": expirationTime], forKey: "billAmountAndExpiration")
+    }
+
+    static func getBillAmount() -> Double? {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let billAmountAndExpiration = defaults.objectForKey("billAmountAndExpiration")
+        if (billAmountAndExpiration == nil) {
+            return nil
+        }
+        let billAmount = Double(billAmountAndExpiration!["amount"] as! NSNumber)
+        let expiration = Double(billAmountAndExpiration!["exp"]as! NSNumber)
+        if (NSDate().timeIntervalSince1970 > expiration) {
+            return nil
+        }
+        return billAmount
+    }
+
 }
