@@ -24,6 +24,8 @@ class ViewController: UIViewController {
         if let billAmount = DataHelper.getBillAmount() {
             billField.text = String(format: "%.2f", billAmount)
             updateTipAmount()
+        } else {
+            billField.becomeFirstResponder()
         }
     }
     
